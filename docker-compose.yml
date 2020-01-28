@@ -1,0 +1,10 @@
+version: '2'
+services:
+        autobuilder:
+                container_name: autobuilder
+                image: b1gtuna/yocto-builder:latest
+                environment:
+                        - TZ="America/New_York"
+                hostname: TARS
+                volumes:
+                        - /var/build:/home/builder/build
