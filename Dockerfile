@@ -65,6 +65,14 @@ RUN apt-get install -y buildbot python3-pip && \
     apt-get update && \
     pip3 install buildbot-www buildbot-waterfall-view buildbot-console-view buildbot-grid-view
 
+USER builder
+RUN buildbot create-master /home/builder/sg3
+RUN cp /home/builder/sg3/master.cfg.sample /home/builder/sg3/master.cfg
+RUN buildbot start /home/builder/sg3
+
+EXPOSE 8010/tcp
+EXPOSE 80
+
 VOLUME /home/builder/build/
 
 USER builder
